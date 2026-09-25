@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 350px;
+            background: #222;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #display {
+            width: 100%;
+            height: 70px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 30px;
+            text-align: right;
+            background: #111;
+            color: white;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: #444;
+            color: white;
+        }
+
+        button:hover {
+            background: #666;
+        }
+
+        .operator {
+            background: #ff9500;
+        }
+
+        .clear {
+            background: #e74c3c;
+        }
+
+        .equal {
+            background: #27ae60;
+        }
+
+        .delete {
+            background: #8e44ad;
+        }
+
+        .zero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <h2>Calculator</h2>
+
+        <input type="text" id="display" readonly>
+
+        <div class="buttons">
+
+            <button class="clear" onclick="clearDisplay()">AC</button>
+            <button class="delete" onclick="deleteLast()">DEL</button>
+            <button class="operator" onclick="addToDisplay('%')">%</button>
+            <button class="operator" onclick="addToDisplay('/')">÷</button>
+
+            <button onclick="addToDisplay('7')">7</button>
+            <button onclick="addToDisplay('8')">8</button>
+            <button onclick="addToDisplay('9')">9</button>
+            <button class="operator" onclick="addToDisplay('*')">×</button>
+
+            <button onclick="addToDisplay('4')">4</button>
+            <button onclick="addToDisplay('5')">5</button>
+            <button onclick="addToDisplay('6')">6</button>
+            <button class="operator" onclick="addToDisplay('-')">−</button>
+
+            <button onclick="addToDisplay('1')">1</button>
+            <button onclick="addToDisplay('2')">2</button>
+            <button onclick="addToDisplay('3')">3</button>
+            <button class="operator" onclick="addToDisplay('+')">+</button>
+
+            <button onclick="square()">x²</button>
+            <button class="zero" onclick="addToDisplay('0')">0</button>
+            <button onclick="addToDisplay('.')">.</button>
+
+            <button onclick="squareRoot()">√</button>
+            <button class="equal" onclick="calculate()">=</button>
+
+        </div>
+    </div>
+
+    <script>
+
+        var display = document.getElementById("display");
+
+        // Add value to display
+        function addToDisplay(value) {
+            display.value = display.value + value;
+        }
+
+        // Clear display
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        // Delete last character
+        function deleteLast() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Calculate result
+        function calculate() {
+
+            if (display.value === "") {
+                return;
+            }
+
+            try {
+                var result = eval(display.value);
+
+                if (!isFinite(result)) {
+                    display.value = "Error";
+                } else {
+                    display.value = result;
+                }
+
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        // Square
+        function square() {
+
+            if (display.value === "") {
+                return;
+            }
+
+            try {
+                var number = eval(display.value);
+                display.value = number * number;
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        // Square root
+        function squareRoot() {
+
+            if (display.value === "") {
+                return;
+            }
+
+            try {
+                var number = eval(display.value);
+
+                if (number < 0) {
+                    display.value = "Error";
+                } else {
+                    display.value = Math.sqrt(number);
+                }
+
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener("keydown", function(event) {
+
+            var key = event.key;
+
+            if (
+                (key >= "0" && key <= "9") ||
+                key === "+" ||
+                key === "-" ||
+                key === "*" ||
+                key === "/" ||
+                key === "." ||
+                key === "%"
+            ) {
+                addToDisplay(key);
+            }
+
+            if (key === "Enter") {
+                calculate();
+            }
+
+            if (key === "Backspace") {
+                deleteLast();
+            }
+
+            if (key === "Escape") {
+                clearDisplay();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
