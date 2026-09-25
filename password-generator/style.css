@@ -1,0 +1,108 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1220;
+  color: #eef0ff;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 24px;
+}
+
+.card {
+  background: #1a1e33;
+  border: 1px solid #2b2f4a;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.output {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f1220;
+  border: 1px solid #2b2f4a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+#password {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #eef0ff;
+  font-size: 18px;
+  font-family: 'Consolas', monospace;
+  outline: none;
+  min-width: 0;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9aa0c0;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.icon-btn:hover {
+  background: #2b2f4a;
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #7c5cff;
+  margin-bottom: 20px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #2b2f4a;
+  font-size: 14px;
+}
+
+.toggle-row:last-of-type {
+  border-bottom: none;
+}
+
+.generate-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c5cff, #00d4b5);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  opacity: 0.9;
+}
